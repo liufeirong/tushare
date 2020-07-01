@@ -179,7 +179,7 @@ def get_tick_data(code=None, date=None, retry_count=3, pause=0.001,
                 if len(lines) < 20:
                     return None
                 df = pd.read_table(StringIO(lines), names=ct.TICK_COLUMNS,
-                                   skiprows=[0])      
+                                   skiprows=[0])
         except Exception as e:
             print(e)
         else:
@@ -219,7 +219,7 @@ def get_sina_dd(code=None, date=None, vol=400, retry_count=3, pause=0.001):
             if len(lines) < 100:
                 return None
             df = pd.read_csv(StringIO(lines), names=ct.SINA_DD_COLS,
-                               skiprows=[0])    
+                               skiprows=[0])
             if df is not None:
                 df['code'] = df['code'].map(lambda x: x[2:])
         except Exception as e:
@@ -385,7 +385,9 @@ def get_realtime_quotes(symbols=None):
     if len(data_list[0]) == 28:
         df = pd.DataFrame(data_list, columns=ct.US_LIVE_DATA_COLS)
     else:
-        df = pd.DataFrame(data_list, columns=ct.LIVE_DATA_COLS)
+        df = pd.DataFrame(data_list)
+        df = df[df.columns[:len(ct.LIVE_DATA_COLS)]]
+        df.columns = ct.LIVE_DATA_COLS
         df = df.drop('s', axis=1)
     df['code'] = syms_list
     ls = [cls for cls in df.columns if '_v' in cls]

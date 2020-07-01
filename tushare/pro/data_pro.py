@@ -28,8 +28,8 @@ def pro_api(token=''):
         pro = client.DataApi(token)
         return pro
     else:
-        raise Exception('api init error.') 
-        
+        raise Exception('api init error.')
+
 
 def pro_bar(ts_code='', pro_api=None, start_date=None, end_date=None, freq='D', asset='E', 
            exchange='',
