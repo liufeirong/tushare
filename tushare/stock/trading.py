@@ -56,7 +56,7 @@ def get_hist_data(code=None, start=None, end=None,
       DataFrame
           属性:日期 ，开盘价， 最高价， 收盘价， 最低价， 成交量， 价格变动 ，涨跌幅，5日均价，10日均价，20日均价，5日均量，10日均量，20日均量，换手率
     """
-    print("本接口即将停止更新，请尽快使用Pro版接口：https://tushare.pro/document/2")
+
     symbol = ct._code_to_symbol(code)
     url = ''
     if ktype.upper() in ct.K_LABELS:
@@ -435,7 +435,7 @@ def get_h_data(code, start=None, end=None, autype='qfq',
           volume 成交量
           amount 成交金额
     '''
-    print("本接口即将停止更新，请尽快使用Pro版接口：https://tushare.pro/document/2")
+
     start = du.today_last_year() if start is None else start
     end = du.today() if end is None else end
     qs = du.get_quarts(start, end)
@@ -667,7 +667,7 @@ def get_k_data(code=None, start='', end='',
           turnoverratio 换手率
           code 股票代码
     """
-    print("本接口即将停止更新，请尽快使用Pro版接口：https://tushare.pro/document/2")
+
     symbol = ct.INDEX_SYMBOL[code] if index else ct._code_to_symbol(code)
     url = ''
     dataflag = ''
@@ -942,7 +942,7 @@ def bar(code, conn=None, start_date=None, end_date=None, freq='D', asset='E',
          期货(asset='X')
     code/open/close/high/low/avg_price：均价  position：持仓量  vol：成交总量
     """
-    print("本接口即将停止更新，请尽快使用Pro版接口：https://tushare.pro/document/2")
+
     code = code.strip().upper()
     for _ in range(retry_count):
         try:
@@ -1242,7 +1242,7 @@ def get_instrument(xapi=None):
     """
             获取证券列表
     """
-    print("本接口即将停止更新，请尽快使用Pro版接口：https://tushare.pro/document/2")
+
     import tushare.util.conns as cs 
     xapi = cs.xapi_x() if xapi is None else xapi
     if xapi is None:
