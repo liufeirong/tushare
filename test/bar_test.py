@@ -5,20 +5,17 @@ Created on 2017/9/24
 '''
 import unittest
 import tushare.stock.trading as fd
-from tushare.util.conns import get_apis, close_apis
 
 class Test(unittest.TestCase):
 
     def set_data(self):
         self.code = '600848'
-        self.start = None
-        self.end = None
+        self.start = ''
+        self.end = ''
         
     def test_bar_data(self):
         self.set_data()
-        conn = get_apis()
-        print(fd.bar(self.code, conn, self.start, self.end,freq='60min'))
-        close_apis(conn)
+        print(fd.bar(self.code, self.start, self.end))
         
 
 if __name__ == "__main__":

@@ -12,7 +12,11 @@ import lxml.html
 from lxml import etree
 import re
 import time
-from pandas.compat import StringIO
+v = pd.__version__ 
+if int(v.split('.')[1])>=25 or int(v.split('.')[0])>0:
+    from io import StringIO
+else:    
+    from pandas.compat import StringIO
 from tushare.util import dateu as du
 try:
     from urllib.request import urlopen, Request
@@ -45,6 +49,7 @@ def get_stock_basics(date=None):
                pb,市净率
                timeToMarket,上市日期
     """
+    print("本接口即将停止更新，请尽快使用Pro版接口：https://tushare.pro/document/2")
     wdate = du.last_tddate() if date is None else date
     wdate = wdate.replace('-', '')
     if wdate < '20160809':
@@ -83,6 +88,7 @@ def get_report_data(year, quarter):
         distrib,分配方案
         report_date,发布日期
     """
+    print("本接口即将停止更新，请尽快使用Pro版接口：https://tushare.pro/document/2")
     if ct._check_input(year,quarter) is True:
         ct._write_head()
         df =  _get_report_data(year, quarter, 1, pd.DataFrame())
@@ -148,6 +154,7 @@ def get_profit_data(year, quarter):
         business_income,营业收入(百万元)
         bips,每股主营业务收入(元)
     """
+    print("本接口即将停止更新，请尽快使用Pro版接口：https://tushare.pro/document/2")
     if ct._check_input(year, quarter) is True:
         ct._write_head()
         data =  _get_profit_data(year, quarter, 1, pd.DataFrame())
@@ -212,6 +219,7 @@ def get_operation_data(year, quarter):
         currentasset_turnover,流动资产周转率(次)
         currentasset_days,流动资产周转天数(天)
     """
+    print("本接口即将停止更新，请尽快使用Pro版接口：https://tushare.pro/document/2")
     if ct._check_input(year, quarter) is True:
         ct._write_head()
         data =  _get_operation_data(year, quarter, 1, pd.DataFrame())
@@ -276,6 +284,7 @@ def get_growth_data(year, quarter):
         epsg,每股收益增长率
         seg,股东权益增长率
     """
+    print("本接口即将停止更新，请尽快使用Pro版接口：https://tushare.pro/document/2")
     if ct._check_input(year, quarter) is True:
         ct._write_head()
         data =  _get_growth_data(year, quarter, 1, pd.DataFrame())
@@ -340,6 +349,7 @@ def get_debtpaying_data(year, quarter):
         sheqratio,股东权益比率
         adratio,股东权益增长率
     """
+    print("本接口即将停止更新，请尽快使用Pro版接口：https://tushare.pro/document/2")
     if ct._check_input(year, quarter) is True:
         ct._write_head()
         df =  _get_debtpaying_data(year, quarter, 1, pd.DataFrame())
@@ -402,6 +412,7 @@ def get_cashflow_data(year, quarter):
         cf_liabilities,经营现金净流量对负债比率
         cashflowratio,现金流量比率
     """
+    print("本接口即将停止更新，请尽快使用Pro版接口：https://tushare.pro/document/2")
     if ct._check_input(year, quarter) is True:
         ct._write_head()
         df =  _get_cashflow_data(year, quarter, 1, pd.DataFrame())
@@ -465,6 +476,7 @@ def get_balance_sheet(code):
     DataFrame
         行列名称为中文且数目较多，建议获取数据后保存到本地查看
     """
+    print("本接口即将停止更新，请尽快使用Pro版接口：https://tushare.pro/document/2")
     if code.isdigit():
         request = Request(ct.SINA_BALANCESHEET_URL%(code))
         text = urlopen(request, timeout=10).read()
@@ -486,6 +498,7 @@ def get_profit_statement(code):
     DataFrame
         行列名称为中文且数目较多，建议获取数据后保存到本地查看
     """
+    print("本接口即将停止更新，请尽快使用Pro版接口：https://tushare.pro/document/2")
     if code.isdigit():
         request = Request(ct.SINA_PROFITSTATEMENT_URL%(code))
         text = urlopen(request, timeout=10).read()
@@ -508,6 +521,7 @@ def get_cash_flow(code):
     DataFrame
         行列名称为中文且数目较多，建议获取数据后保存到本地查看
     """
+    print("本接口即将停止更新，请尽快使用Pro版接口：https://tushare.pro/document/2")
     if code.isdigit():
         request = Request(ct.SINA_CASHFLOW_URL%(code))
         text = urlopen(request, timeout=10).read()
